@@ -1,8 +1,10 @@
 import React from 'react';
 import bannerImg from '/books.jpg';
+import AllBooks from '../AllBooks/AllBooks';
 
 const Hero = () => {
     return (
+        <div>
         <div className="bg-gradient-to-r from-green-50 to-gray-100 py-16 rounded-2xl">
             <div className="flex flex-col-reverse md:flex-row items-center justify-between w-11/12 mx-auto gap-10">
 
@@ -32,6 +34,9 @@ const Hero = () => {
                 </div>
 
             </div>
+        </div>
+
+            <AllBooks></AllBooks>
         </div>
     );
 };
