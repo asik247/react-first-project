@@ -7,19 +7,30 @@ import BookDetails from "../Components/BooksDetails/BookDetails";
 
 export const router = createBrowserRouter([
     {
-        path:"/",
-        Component:Root,
-        children:[
-            {index:true,
+        path: "/",
+        Component: Root,
+        children: [
+            {
+                index: true,
 
-            loader:()=>fetch("/AllBooks.json"),   
-            Component:Hero},
-            {path:"listedBooks",Component:ListedBooks},
-            {path:"pagesToRead",Component:PagesToRead},
-           {path:'bookDetails/:id',
-            loader:({params})=>fetch(`AllBooks.json/${params.id}`)
-            ,Component:BookDetails}
-            
+                loader: () => fetch("/AllBooks.json"),
+                Component: Hero
+            },
+            { path: "listedBooks", Component: ListedBooks },
+            { path: "pagesToRead", Component: PagesToRead },
+            {
+                path: 'bookDetails/:id',
+                loader: async ({ params }) => {
+                    const res = await fetch('/AllBooks.json')
+                    const data = await res.json()
+
+                    const singleBook = data.find(book => book.bookId == params.id)
+
+                    return singleBook
+                },
+                Component: BookDetails
+            }
+
         ]
     }
 ])
