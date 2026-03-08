@@ -1,6 +1,6 @@
 import React from 'react';
 import bannerImg from '/books.jpg';
-import AllBooks from '../AllBooks/AllBooks';
+
 
 const Hero = () => {
     return (
@@ -36,7 +36,10 @@ const Hero = () => {
             </div>
         </div>
 
-            <AllBooks></AllBooks>
+
+        {/* All Books show code start here; */}
+
+          
         </div>
     );
 };
