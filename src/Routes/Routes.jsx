@@ -9,7 +9,10 @@ export const router = createBrowserRouter([
         path:"/",
         Component:Root,
         children:[
-            {index:true,Component:Hero},
+            {index:true,
+
+            loader:()=>fetch("/AllBooks.json"),   
+            Component:Hero},
             {path:"listedBooks",Component:ListedBooks},
             {path:"pagesToRead",Component:PagesToRead}
             
