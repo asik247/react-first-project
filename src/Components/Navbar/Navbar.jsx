@@ -2,36 +2,77 @@ import React from 'react';
 import { NavLink } from 'react-router';
 
 const Navbar = () => {
-    const link = <>
-        <NavLink to={'/'} className={'text-gray-500 m-2 hover:text-green-500'}>Home</NavLink>
-        <NavLink to={'/listedBooks'} className={'text-gray-500 m-2 hover:text-green-500'}>Listed Books</NavLink>
-        <NavLink to={'/pagesToRead'} className={'text-gray-500 m-2 hover:text-green-500'}>Pages to Read</NavLink>
 
-    </>
+    const navLinkStyle = ({ isActive }) =>
+        isActive
+            ? "text-green-600 font-semibold border-b-2 border-green-500 pb-1"
+            : "text-gray-600 hover:text-green-500";
+
+    const links = (
+        <>
+            <NavLink to="/" className={navLinkStyle}>Home</NavLink>
+            <NavLink to="/listedBooks" className={navLinkStyle}>Listed Books</NavLink>
+            <NavLink to="/pagesToRead" className={navLinkStyle}>Pages to Read</NavLink>
+        </>
+    );
+
     return (
+        <div className="bg-white shadow-md mt-5">
+            <div className="navbar w-11/12 mx-auto">
 
+                {/* Mobile Menu */}
+                <div className="navbar-start">
 
-        <div className="navbar bg-base-100 shadow-sm">
-            <div className="navbar-start">
-                <div className="dropdown">
-                    <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /> </svg>
+                    <div className="dropdown">
+                        <div tabIndex={0} className="btn btn-ghost lg:hidden">
+                            ☰
+                        </div>
+
+                        <ul
+                            tabIndex={0}
+                            className="menu menu-sm dropdown-content mt-3 z-[1] p-3 shadow bg-white rounded-box w-52 space-y-2"
+                        >
+                            {links}
+                        </ul>
                     </div>
-                    <ul
-                        tabIndex="-1"
-                        className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
-                        {link}
+
+                    {/* Logo */}
+                    <h1 className="md:text-2xl font-bold text-green-600">
+                        Book Vibe 📚
+                    </h1>
+
+                </div>
+
+                {/* Desktop Menu */}
+                <div className="navbar-center hidden lg:flex">
+                    <ul className="menu menu-horizontal gap-6">
+                        {links}
                     </ul>
                 </div>
-                <a className="btn btn-ghost text-xl">daisyUI</a>
-            </div>
-            <div className="navbar-center hidden lg:flex">
-                <ul className="menu menu-horizontal px-1">
-                    {link}
-                </ul>
-            </div>
-            <div className="navbar-end">
-                <a className="btn">Button</a>
+
+                {/* Buttons */}
+                <div className="navbar-end gap-2 md:gap-3">
+
+                    <button className="
+        border border-green-500 text-green-500 
+        text-xs md:text-base
+        px-2 py-1 md:px-4 md:py-2
+        rounded-lg hover:bg-green-500 hover:text-white transition
+    ">
+                        Sign In
+                    </button>
+
+                    <button className="
+        bg-green-500 text-white
+        text-xs md:text-base
+        px-2 py-1 md:px-4 md:py-2
+        rounded-lg hover:bg-green-600 transition
+    ">
+                        Sign Up
+                    </button>
+
+                </div>
+
             </div>
         </div>
     );
